@@ -20,7 +20,11 @@ const db = admin.firestore();
 
 export const webApi = functions.https.onRequest(main);
 
+app.get("/", (req, res) => {
+  res.json({ message: "Humidity and temparature control API v0.0.0" });
+});
+
 app.get("/humidity", async (req, res) => {
-  const humidityHistory = await db.collection("humidity").add(product);
+  const humidityHistory = await db.collection("humidity");
   res.json(humidityHistory);
 });
